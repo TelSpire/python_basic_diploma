@@ -6,10 +6,13 @@
 - [Структура бота](#структура-бота)
 
 ## Функции:
-- Ответ на приветствие: если в сообщении есть "Привет", то отвечает "Здравствуй (имя пользователя)! Чтобы узнать все доступные команды введите /help"
-- Эхо: если не чат не находится ни в каком состоянии, то отвечает таким же сообщением
+- Ответ на приветствие: если в сообщении есть "Привет" или "/start", то отвечает "Здравствуй (имя пользователя)! Чтобы узнать все доступные команды введите /help" и переводит в состояние "start"
+- Эхо: если чат не находится ни в каком состоянии, то отвечает таким же сообщением
 - Команда /help: пишет в чат все имеющиеся команды и их описания (редактируется в config_data/config.py)
 - Команда /hello_world: пишет в чат "Hello world of telegram!"
+- Команда /menu: выводит доступные кнопки с действиями
+- Кнопка Low(state=start): Переводит в состояние настройки поиска билетов с фильтрацией по возрастанию(state=request_state)
+- Кнопка High(state=start): Переводит в состояние настройки поиска билетов с фильтрацией по убыванию(state=request_state)
 
 ## Пройденные этапы разработки:
 - [x] 1 Создание бота, который реагирует на команду /hello-world, а также на текст «Привет»
@@ -23,7 +26,7 @@
 ## Работа с endpoint API:
 ### Пример запроса: 
 https://api.travelpayouts.com/v2/prices/month-matrix?currency=rub&origin=TJM&destination=SVO&show_to_affiliates=true&token={TOKEN}
-### Результат запроса сокращенный до 3 элементов:
+### Результат запроса сокращенный до 1 элемента:
 ```
 {
     "data": [
@@ -36,36 +39,6 @@ https://api.travelpayouts.com/v2/prices/month-matrix?currency=rub&origin=TJM&des
             "found_at": "2024-02-02T11:00:31Z",
             "trip_class": 0,
             "value": 3842,
-            "number_of_changes": 0,
-            "duration": 175,
-            "distance": 1704,
-            "show_to_affiliates": true,
-            "actual": true
-        },
-        {
-            "depart_date": "2024-03-02",
-            "origin": "TJM",
-            "destination": "MOW",
-            "gate": "MEGO.travel",
-            "return_date": "",
-            "found_at": "2024-02-02T10:51:41Z",
-            "trip_class": 0,
-            "value": 4442,
-            "number_of_changes": 0,
-            "duration": 175,
-            "distance": 1704,
-            "show_to_affiliates": true,
-            "actual": true
-        },
-        {
-            "depart_date": "2024-03-17",
-            "origin": "TJM",
-            "destination": "MOW",
-            "gate": "MEGO.travel",
-            "return_date": "",
-            "found_at": "2024-02-02T10:36:59Z",
-            "trip_class": 0,
-            "value": 4442,
             "number_of_changes": 0,
             "duration": 175,
             "distance": 1704,

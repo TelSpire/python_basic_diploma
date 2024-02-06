@@ -7,8 +7,20 @@ else:
     load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-RAPID_API_KEY = os.getenv("RAPID_API_KEY")
+API_KEY = os.getenv("API_KEY")
 DEFAULT_COMMANDS = (
     ("hello_world", "Вывести hello world"),
-    ("help", "Вывести справку")
+    ("help", "Вывести справку"),
+    ("menu", "Показывает доступные кнопки действий")
 )
+request_params = {
+    'origin': '',
+    'destination': '',
+    'amount': 1,
+    'price_min': 0,
+    'price_max': 100000,
+    'start_date': 1,
+    'end_date': 31,
+    'min_duration': 1,
+    'max_duration': 31
+}
