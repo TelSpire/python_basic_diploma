@@ -9,4 +9,4 @@ def start(message):
     btn_high = types.KeyboardButton("High")
     # item3 = types.KeyboardButton("Custom")
     markup.add(btn_low, btn_high)
-    bot.reply_to(message, "Выберите кнопку:", reply_markup=markup)
+    bot.reply_to(message, "Выберите действие:", reply_markup=markup)
