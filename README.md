@@ -16,8 +16,8 @@
 
 ## Пройденные этапы разработки:
 - [x] 1 Создание бота, который реагирует на команду /hello-world, а также на текст «Привет»
-- [ ] 2 Реализация команды /low (http://api.travelpayouts.com/v2/prices/month-matrix; price, date, trip_duration)
-- [ ] 3 Реализация команды /high (http://api.travelpayouts.com/v2/prices/month-matrix; price, date, trip_duration)
+- [x] 2 Реализация команды /low (http://api.travelpayouts.com/v2/prices/month-matrix; price, date, trip_duration)
+- [x] 3 Реализация команды /high (http://api.travelpayouts.com/v2/prices/month-matrix; price, date, trip_duration)
 - [ ] 4 Реализация команды /custom (http://api.travelpayouts.com/v2/prices/month-matrix; price, date, trip_duration)
 - [ ] 5 Реализация команды /history 
 - [ ] 5.1 Добавление всяких мелких плюшек и вспомогательного функционала
