@@ -7,6 +7,11 @@ from config_data.config import API_KEY
 
 @bot.message_handler(state=MyStates.start, func=lambda message: message.text in ('Low', 'High'))
 def bot_low(message: Message) -> None:
+    """
+    Выполняет функцию кнопок low и high, переводит в состояние выбора параметров
+    :param message: сообщение пользователя
+    :return: None
+    """
     bot.send_message(message.chat.id, 'Введите через запятую IATA-коды городов отправления и назначения, а также количество выводимых билетов(от 1 до 50)\n'
                                       'Пример: TJM, MOW, 5\n'
                                       'Показывает 5 билетов из Тюмени в Москву', reply_markup=ReplyKeyboardRemove())
@@ -17,6 +22,11 @@ def bot_low(message: Message) -> None:
 
 @bot.message_handler(state=MyStates.choose, func=lambda message: True)
 def bot_low_choose(message: Message) -> None:
+    """
+    Сохраняет параметры и запрашивает по какому параметру фильтровать
+    :param message: сообщение от пользователя
+    :return: None
+    """
     cache[str(message.chat.id)]['low_request'] = dict(base_request)
     low_request = cache[str(message.chat.id)]['low_request']
     data = message.text.split(', ')
@@ -36,6 +46,11 @@ def bot_low_choose(message: Message) -> None:
 
 @bot.message_handler(state=MyStates.request_state, func=lambda message: True)
 def bot_low_request(message: Message) -> None:
+    """
+    Выводит билеты по заданным параметрам, типу фильтрации и по типу запроса
+    :param message: сообщение пользователя
+    :return: None
+    """
     msg = message.text.lower()
     low_request = cache[str(message.chat.id)]['low_request']
     if msg in ('цена', 'дата', 'длительность'):

@@ -5,7 +5,13 @@ from loader import bot, MyStates, base_request, cache
 from config_data.config import API_KEY
 
 
-def filter_for_custom(ticket, message):
+def filter_for_custom(ticket: dict, message: Message) -> bool:
+    """
+    Фильтрует билеты по заданным настройкам
+    :param ticket: Билет
+    :param message: Сообщение пользователя
+    :return: True если билет подходит по параметрам, Else В ином случае
+    """
     params = cache[str(message.chat.id)]['settings']
     if (
             params['цена'][0] <= ticket['value'] <= params['цена'][1] and
@@ -17,7 +23,13 @@ def filter_for_custom(ticket, message):
         return False
 
 
-def save_values(message: Message, parameter: str):
+def save_values(message: Message, parameter: str) -> None:
+    """
+    Сохраняет настройки для данного параметра
+    :param message: сообщение пользователя
+    :param parameter: параметр
+    :return: None
+    """
     value = list(map(int, message.text.split()))
     cache[str(message.chat.id)]['settings'][parameter] = value
     bot.send_message(message.chat.id, 'Введите какой параметр настроить:\n'
@@ -26,7 +38,12 @@ def save_values(message: Message, parameter: str):
 
 
 @bot.message_handler(state=MyStates.start, func=lambda message: message.text == 'Custom')
-def bot_low(message: Message) -> None:
+def bot_custom(message: Message) -> None:
+    """
+    Выполняет действие кнопки Custom, переводит в состояние выбора настроек
+    :param message: сообщение пользователя
+    :return: None
+    """
     bot.send_message(message.chat.id, 'Введите через запятую IATA-коды городов отправления и назначения, а также количество выводимых билетов(от 1 до 50)\n'
                                       'Пример: TJM, MOW\n'
                                       'Показывает найденные билеты из Тюмени в Москву', reply_markup=ReplyKeyboardRemove())
@@ -36,7 +53,12 @@ def bot_low(message: Message) -> None:
 
 
 @bot.message_handler(state=MyStates.choose_custom, func=lambda message: True)
-def bot_low_choose(message: Message) -> None:
+def bot_custom_choose(message: Message) -> None:
+    """
+    Сохраняет настройки для поиска в кэш
+    :param message: сообщение пользователя
+    :return: None
+    """
     cache[str(message.chat.id)]['low_request'] = dict(base_request)
     low_request = cache[str(message.chat.id)]['low_request']
     data = message.text.split(', ')
@@ -53,7 +75,12 @@ def bot_low_choose(message: Message) -> None:
 
 
 @bot.message_handler(state=MyStates.request_state_custom, func=lambda message: True)
-def bot_low_choose(message: Message) -> None:
+def bot_custom_request(message: Message) -> None:
+    """
+    Запрашивает настройки для фильтра, либо отправляет запрос к API и выводит результаты поиска
+    :param message: сообщение пользователя
+    :return: None
+    """
     msg = message.text.lower()
     low_request = cache[str(message.chat.id)]['low_request']
     if msg in ('цена', 'дата', 'длительность'):
