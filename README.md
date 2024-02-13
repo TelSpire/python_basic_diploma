@@ -13,12 +13,13 @@
 - Команда /menu: выводит доступные кнопки с действиями
 - Кнопка Low(state=start): Переводит в состояние настройки поиска билетов с фильтрацией по возрастанию(state=request_state)
 - Кнопка High(state=start): Переводит в состояние настройки поиска билетов с фильтрацией по убыванию(state=request_state)
+- Кнопка Custom(state=start): Переводит в состояние настройки поиска билетов с настраиваемой фильтрации(state=request_state_custom)
 
 ## Пройденные этапы разработки:
 - [x] 1 Создание бота, который реагирует на команду /hello-world, а также на текст «Привет»
 - [x] 2 Реализация команды /low (http://api.travelpayouts.com/v2/prices/month-matrix; price, date, trip_duration)
 - [x] 3 Реализация команды /high (http://api.travelpayouts.com/v2/prices/month-matrix; price, date, trip_duration)
-- [ ] 4 Реализация команды /custom (http://api.travelpayouts.com/v2/prices/month-matrix; price, date, trip_duration)
+- [x] 4 Реализация команды /custom (http://api.travelpayouts.com/v2/prices/month-matrix; price, date, trip_duration)
 - [ ] 5 Реализация команды /history 
 - [ ] 5.1 Добавление всяких мелких плюшек и вспомогательного функционала
 - [ ] 6 Сдача готового проекта
