@@ -35,7 +35,7 @@ def bot_low_choose(message: Message) -> None:
 
 
 @bot.message_handler(state=MyStates.request_state, func=lambda message: True)
-def bot_low_choose(message: Message) -> None:
+def bot_low_request(message: Message) -> None:
     msg = message.text.lower()
     low_request = cache[str(message.chat.id)]['low_request']
     if msg in ('цена', 'дата', 'длительность'):
