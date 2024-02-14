@@ -11,7 +11,8 @@ API_KEY = os.getenv("API_KEY")
 DEFAULT_COMMANDS = (
     ("hello_world", "Вывести hello world"),
     ("help", "Вывести справку"),
-    ("menu", "Показывает доступные кнопки действий")
+    ("menu", "Показывает доступные кнопки действий"),
+    ("history", "Показывает последние 10 запросов")
 )
 request_params = {
     'origin': '',
