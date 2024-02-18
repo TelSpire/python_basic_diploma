@@ -1,7 +1,7 @@
 import requests
 import json
 from telebot.types import Message, ReplyKeyboardRemove
-from loader import bot, MyStates, base_request, cache
+from loader import bot, MyStates, base_request, cache, RA_db
 from config_data.config import API_KEY
 
 
@@ -100,6 +100,8 @@ def bot_custom_request(message: Message) -> None:
             for i_ticket in answer:
                 bot.send_message(message.chat.id, i_ticket)
         bot.set_state(message.from_user.id, MyStates.start, message.chat.id)
+        user_cache = cache[str(message.chat.id)]['settings']
+        RA_db.add_user_query(message.chat.id, f"Тип: Custom \nМесто отправления, назначение: {low_request['origin']}, {low_request['destination']} \nПараметр фильтрации: Цена {user_cache['цена']}, Дата {user_cache['дата']}, Длительность {user_cache['длительность']}\n")
         cache[str(message.chat.id)] = {}
     else:
         bot.send_message(message.chat.id, 'Введен не существующий фильтр')

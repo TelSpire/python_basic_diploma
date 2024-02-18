@@ -2,6 +2,7 @@ from telebot import TeleBot
 from telebot.storage import StateMemoryStorage
 from telebot import custom_filters
 from config_data import config
+from database import RA_db
 from states.mystates import MyStates
 
 
